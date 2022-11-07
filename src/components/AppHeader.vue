@@ -2,7 +2,8 @@
   <div>
     <AppButton @click="onClose">Закрыть</AppButton>
     <span>
-        {{tg.initDataUnsafe?.user?.username}}
+        <!-- {{tg.initDataUnsafe?.user?.username}} -->
+        {tg.initDataUnsafe?.user?.username}
     </span>
   </div>  
 </template>
