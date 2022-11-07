@@ -23,6 +23,11 @@ export default {
   components: {
     AppHeader
   },
+  methods: {
+    onToggleButton() {
+      onToggleButton()
+    }
+  },
   mounted() {
     tg.ready()
   }

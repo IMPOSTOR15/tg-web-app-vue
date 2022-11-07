@@ -3,7 +3,7 @@
     <AppButton @click="onClose">Закрыть</AppButton>
     <span>
         <!-- {{tg.initDataUnsafe?.user?.username}} -->
-        {tg.initDataUnsafe?.user?.username}
+        {{user.username}}
     </span>
   </div>  
 </template>
@@ -20,10 +20,13 @@ export default {
   },
   data() {
     return {
-
+      user: user
     }
   },
   methods: {
+    onClose() {
+      onClose()
+    }
   },
   
 }
