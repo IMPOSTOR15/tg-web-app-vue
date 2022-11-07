@@ -1,11 +1,13 @@
 <template>
   <div>
+    <Header/>
     <p>webapp</p>
     <button @click="onClose">Закрыть</button>
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 const tg = window.Telegram.WebApp;
 
 export default {
@@ -19,6 +21,9 @@ export default {
     onClose() {
       tg.close()
     }
+  },
+  components: {
+    Header
   }
 }
 </script>

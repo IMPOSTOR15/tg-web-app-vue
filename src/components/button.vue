@@ -1,5 +1,5 @@
 <template>
-  
+  <button>Закрыть</button>
 </template>
 
 <script>

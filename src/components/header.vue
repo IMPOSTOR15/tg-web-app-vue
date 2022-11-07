@@ -10,7 +10,6 @@
 <script>
 const tg = window.Telegram.WebApp;
 import Button from "./Button";
-import {useTelegram} from "../../hooks/useTelegram";
 export default {
   components: {
     Button
