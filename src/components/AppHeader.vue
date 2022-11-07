@@ -1,18 +1,18 @@
 <template>
   <div>
-    <Button @click="onClose">Закрыть</Button>
+    <AppButton @click="onClose">Закрыть</AppButton>
     <span>
-        {tg.initDataUnsafe?.user?.username}
+        {{tg.initDataUnsafe?.user?.username}}
     </span>
   </div>  
 </template>
 
 <script>
 const tg = window.Telegram.WebApp;
-import Button from "./Button";
+import AppButton from "./AppButton.vue";
 export default {
   components: {
-    Button
+    AppButton
   },
   data() {
     return {
