@@ -1,15 +1,17 @@
 <template>
   <div>
-    <Header/>
+    <AppHeader/>
     <p>webapp</p>
-    <button @click="onClose">Закрыть</button>
+    <button @click="onToggleButton">toggle</button>
   </div>
 </template>
 
 <script>
-import Header from "@/components/AppHeader.vue"
-
+import AppHeader from "@/components/AppHeader.vue"
+import {useTelegram} from '@/mixins/useTelegram.js'
 const tg = window.Telegram.WebApp;
+
+const {onToggleButton} = useTelegram();
 
 export default {
   name: 'App',
@@ -18,13 +20,11 @@ export default {
 
     }
   },
-  methods: {
-    onClose() {
-      tg.close()
-    }
-  },
   components: {
-    Header
+    AppHeader
+  },
+  mounted() {
+    tg.ready()
   }
 }
 </script>
