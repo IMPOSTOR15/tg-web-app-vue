@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import Header from '@/components/Header.vue'
+import Header from "@/components/AppHeader.vue"
+
 const tg = window.Telegram.WebApp;
 
 export default {
