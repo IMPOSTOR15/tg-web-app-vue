@@ -9,8 +9,11 @@
 </template>
 
 <script>
-const tg = window.Telegram.WebApp;
+import {useTelegram} from '@/mixins/useTelegram.js'
 import AppButton from "./AppButton.vue";
+
+const {user, onClose} = useTelegram();
+
 export default {
   components: {
     AppButton
@@ -21,10 +24,8 @@ export default {
     }
   },
   methods: {
-    onClose() {
-      tg.close()
-    }
-  }
+  },
+  
 }
 </script>
 
