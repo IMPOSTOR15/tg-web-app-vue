@@ -8,10 +8,19 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "ngrok": "^4.3.3",
+    "node-telegram-bot-api": "^0.60.0",
+    "nodemon": "^2.0.20",
+    "util": "^0.12.5",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.3",
+    "vuex": "^4.0.0",
+    "webpack": "^5.74.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0"
   },
   "browserslist": [
