@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="header">
     <AppButton @click="onClose">Закрыть</AppButton>
-    <span>
+    <span class="username">
         <!-- {{tg.initDataUnsafe?.user?.username}} -->
-        {{user.username}}
+        {{user?.username}}
     </span>
   </div>  
 </template>
