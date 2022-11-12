@@ -14,6 +14,7 @@
     <div class="TotalPrice">
       <h2>Итого: {{ totalPrice }}</h2>
     </div>
+    <button @click="toOrder">Оформить заказ</button>
   </div>
 </template>
 
@@ -47,15 +48,17 @@ export default {
     },
     toOrder() {
       this.$router.push('order-form')
-      tg.offEvent('mainButtonClicked', this.toOrder)
     }
   },
   mounted() {
     this.calculateTotalPrice()
     tg.MainButton.setParams({
-      text: 'Оформить заказ'
+      text: 'Заполнить данные для заказа'
     })
     tg.onEvent('mainButtonClicked', this.toOrder)
+  },
+  unmounted() {
+    tg.offEvent('mainButtonClicked', this.toOrder)
   }
 }
 </script>

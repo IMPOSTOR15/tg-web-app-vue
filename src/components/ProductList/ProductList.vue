@@ -20,62 +20,23 @@
 import {useTelegram} from '@/mixins/useTelegram.js';
 const {tg} = useTelegram();
 import ProductCard from '@/components/ProductList/ProductCard.vue'
-import Cart from '@/components/ProductList/CartComponent.vue'
 
 export default {
   components: {
     ProductCard,
-    Cart
   },
   methods: {
     addProduct(currentProductId) {
       var currentProductIndex = this.products.findIndex(product => product.id === currentProductId)
       this.products[currentProductIndex].countInCart += 1
-      // console.log(this.products[currentProductIndex]);
       this.$store.dispatch('GET_PRODUCTS', this.products);
       this.countInCart += 1
-      // currentProduct.countInCart += 1
-      // console.log(currentProduct);
-
-      // var isProductExist = false
-      // if (this.cart.length > 0) {
-      //   for(let i = 0; i<this.cart.length; i++) {
-      //     if (this.cart[i].name === productObj.name) {
-      //       this.cart[i].count += 1;
-      //       isProductExist = true
-      //       break
-      //     }
-      //   }
-      //   if (!isProductExist) {
-      //     this.cart.push(productObj)
-      //     this.countInCart += 1
-      //   }
-      // } else {
-      //   this.cart.push(productObj)
-      //   this.countInCart += 1
-      // }
     },
     removeProduct(currentProductId) {
-      // var isProductExist = false
       var currentProductIndex = this.products.findIndex(product => product.id === currentProductId)
       this.products[currentProductIndex].countInCart -= 1
-      // console.log(this.products[currentProductIndex]);
       this.$store.dispatch('GET_PRODUCTS', this.products);
       this.countInCart -= 1
-      // if (this.cart.length > 0) {
-      //   for(let i = 0; i<this.cart.length; i++) {
-      //     if (this.cart[i].name === productObj.name) {
-      //       if (this.cart[i].count > 1) {
-      //         this.cart[i].count -= 1
-      //         break
-      //       } else {
-      //         this.cart.splice(i,1)
-      //         this.countInCart -= 1
-      //         break
-      //       }
-      //     }
-      //   }
-      // }
     },
     buttonCheck() {
       if (this.products.length > 0) {
@@ -85,11 +46,9 @@ export default {
       }
     },
     toCart() {
-      this.checkout = true;
-      tg.offEvent('mainButtonClicked', this.toCart)
+      this.$router.push('cart')
     },
     toCartNative() {
-      this.checkout = !this.checkout;
       this.$router.push('cart')
     }
   },
@@ -106,6 +65,9 @@ export default {
     })
     tg.onEvent('mainButtonClicked', this.toCart)
   },
+  unmounted() {
+    tg.offEvent('mainButtonClicked', this.toCart)
+  },
   data() {
     return {
       checkout: false,
@@ -118,20 +80,19 @@ export default {
 
 <style scoped>
 .product {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--tg-theme-button-color);
-    padding: 15px;
-    width: 170px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--tg-theme-button-color);
+  padding: 15px;
+  width: 170px;
 }
 
-
 .img {
-    width: 100%;
-    background: lightgray;
-    height: 100px;
-    margin: 0 auto;
-    background: var(--tg-theme-button-color);
+  width: 100%;
+  background: lightgray;
+  height: 100px;
+  margin: 0 auto;
+  background: var(--tg-theme-button-color);
 }
 
 .description {

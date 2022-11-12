@@ -7,6 +7,16 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/nfthome',
+    name: 'nfthome',
+    component: () => import( '../views/NFTHomeView.vue')
+  },
+  {
+    path: '/ChoseProducteToGenerate',
+    name: 'generation',
+    component: () => import( '../components/NFTPrj/GenerateProductListComponent.vue')
+  },
+  {
     path: '/form',
     name: 'form',
     // route level code-splitting
