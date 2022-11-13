@@ -17,6 +17,11 @@ const routes = [
     component: () => import( '../components/NFTPrj/GenerateProductListComponent.vue')
   },
   {
+    path: '/chooseColiction',
+    name: 'chooseColiction',
+    component: () => import( '../components/NFTPrj/GenerateColectionsListComponent.vue')
+  },
+  {
     path: '/form',
     name: 'form',
     // route level code-splitting

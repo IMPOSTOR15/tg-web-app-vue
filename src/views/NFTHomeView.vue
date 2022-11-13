@@ -22,7 +22,7 @@ export default {
   top: 0;
   left: 0;
   z-index: 0;
-  filter: brightness(40%);
+  filter: brightness(50%);
   height: 800px;
 }
 .home {

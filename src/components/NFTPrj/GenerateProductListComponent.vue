@@ -53,7 +53,8 @@ export default {
   margin: 5px 5px 5px 5px;
 }
 .back-btn {
-  border: none
+  border: none;
+  cursor: pointer;
 }
 .back-btn-img-back {
   align-self: center;
