@@ -1,6 +1,5 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 /* :root {
     --tg-theme-bg-color: #101c26;
@@ -13,11 +12,21 @@
 }
 
 body {
-    font-family: 'Montserrat Alternates', sans-serif;
-    background-color: #fff;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--tg-theme-text-color);
+    background-color: var(--tg-theme-bg-color);
 }
 
 button {
-    background-color: none;
-    background: none;
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
+}
+a {
+    color: var(--tg-theme-link-color);
+}
+.hint-color {
+    color: var(--tg-theme-hint-color) !important;
+}
+.second-bg-color {
+    background-color: var(--tg-theme-secondary-bg-color);
 }

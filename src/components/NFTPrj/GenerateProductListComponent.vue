@@ -45,7 +45,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .products-list {
   display: flex;
   flex-direction: row;

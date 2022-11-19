@@ -44,7 +44,7 @@ export default {
   margin: 5px auto 5px auto;
 }
 .info-text {
-  font-size: 13px;
-  margin: 0 2%;
+  font-size: 15px;
+  padding: 0 2%;
 }
 </style>

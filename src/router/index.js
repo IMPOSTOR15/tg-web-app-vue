@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
+import chooseMerchPage from '@/components/Merch/GenerateProductListComponent.vue'
+import chooseColectionPage from '@/components/Merch/GenerateColectionsListComponent.vue'
 const routes = [
   {
     path: '/',
@@ -7,9 +9,24 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/choose-merch',
+    name: 'chooseMerch',
+    component: chooseMerchPage
+  },
+  {
+    path: '/choose-colection',
+    name: 'chooseColection',
+    component: chooseColectionPage
+  },
+  {
     path: '/nfthome',
     name: 'nfthome',
     component: () => import( '../views/NFTHomeView.vue')
+  },
+  {
+    path: '/tgcolors',
+    name: 'tgcolors',
+    component: () => import( '../views/ColorsView.vue')
   },
   {
     path: '/ChoseProducteToGenerate',

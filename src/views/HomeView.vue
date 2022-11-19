@@ -7,7 +7,14 @@
     <button class="main-btn">
       <router-link class="link" to="nfthome">Main Page</router-link>
     </button>
+    <button class="main-btn">
+      <router-link class="link" to="choose-merch">New merch design</router-link>
+    </button>
+    <button class="main-btn">
+      <router-link class="link" to="tgcolors">Color samples</router-link>
+    </button>
   </div>
+
 </template>
 
 <script>
@@ -35,10 +42,12 @@ export default {
 .main-btn-area {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 .main-btn {
-  margin-top: 300px;
   padding: 20px 40px 20px 40px;
+  width: 50%;
+  margin: 100px auto 0 auto;
   
 }
 .link {
