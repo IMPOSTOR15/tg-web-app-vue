@@ -53,5 +53,6 @@ export default {
 .link {
   font-size: 30px;
   text-decoration: none;
+  color: var(--tg-theme-text-color);
 }
 </style>

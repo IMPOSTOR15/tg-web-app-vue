@@ -13,7 +13,7 @@
   </div>
   <p class="top-text textP">На выбранном изделии будет печататься принт</p>
   <div class="btn-wrapper">
-    <div v-if="isProductAlreadySelected" class="back-btn" @click="this.$router.push('choose-colection')">
+    <div v-if="isProductAlreadySelected" class="back-btn" @click="goToCollections">
       <img class="back-btn-img-next" src="@/assets/Button.png" alt="">
     </div>
   </div>
@@ -30,17 +30,28 @@ export default {
       generateProducts: this.$store.getters.GENERATEPRODUCTS,
       isProductAlreadySelected: null,
       isNeedToUnSelect: false,
+
+      currentProduct: {},
     }
   },
   methods: {
     addProduct(prodId) {
       this.isProductAlreadySelected = true
       this.isNeedToUnSelect = !this.isNeedToUnSelect
-      
+      var productIndex = this.generateProducts.findIndex(product => product.id === prodId)
+      this.currentProduct = this.generateProducts[productIndex]
+      console.log(this.currentProduct);
     },
     removeProduct(prodId) {
       this.isProductAlreadySelected = false
+    },
+    goToCollections() {
+      this.$router.push('choose-colection')
     }
+  },
+  unmounted() {
+    this.$store.dispatch('UPDATE_SELECTEDPRODUCT', this.currentProduct)
+    console.log(this.$store.getters.SELECTEDPRODUCT);
   }
 }
 </script>

@@ -26,7 +26,7 @@
     <p class="top-text text-semiheader">{{ currentCollection.author }}</p>
     <p class="top-text textP text-description">{{ currentCollection.description }}</p>
     <div class="collection-item-list"> 
-      <ColectionItem 
+      <ColectionItem
         v-for="item in currentCollection.items"
         :key="item.id"
         :item="item"
@@ -36,6 +36,7 @@
         @unselectItem="unselectItem($event)"
       />
     </div>
+    <!-- <button @click="goToCreatePage">Создать</button> -->
   </div>
 </template>
 
@@ -87,17 +88,22 @@ export default {
       tg.MainButton.hide();
     },
     goToCreatePage() {
-      alert("успешно");
+      // alert("успешно");
+      this.$router.push('generatedMerch')
     }
   },
   mounted() {
     tg.MainButton.setParams({
-      text: 'Создать'
+      text: 'СОЗДАТЬ'
     })
     tg.onEvent('mainButtonClicked', this.goToCreatePage)
   },
   unmounted() {
+    this.$store.dispatch('UPDATE_SELECTEDIMAGE', this.currentItem)
+    this.$store.dispatch('UPDATE_SELECTEDCOLLECTION', this.currentCollection)
+    console.log(this.$store.getters.SELECTEDIMAGE);
     tg.offEvent('mainButtonClicked', this.goToCreatePage)
+    tg.MainButton.hide();
   }
 }
 </script>
@@ -119,7 +125,7 @@ export default {
 }
 
 .text-description {
-  padding: 0 2%;
+  padding: 0 10%;
 }
 
 .btn-wrapper{
@@ -136,7 +142,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 5px 5px 5px 5px;
+  margin: 5px 3%;
 }
 .back-p {
   width: 55px;

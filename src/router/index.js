@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import chooseMerchPage from '@/components/Merch/GenerateProductListComponent.vue'
 import chooseColectionPage from '@/components/Merch/GenerateColectionsListComponent.vue'
+import generatedMerch from '@/components/Merch/GeneratedMerch.vue'
 const routes = [
   {
     path: '/',
@@ -17,6 +18,11 @@ const routes = [
     path: '/choose-colection',
     name: 'chooseColection',
     component: chooseColectionPage
+  },
+  {
+    path: '/generatedMerch',
+    name: 'generatedMerch',
+    component: generatedMerch
   },
   {
     path: '/nfthome',

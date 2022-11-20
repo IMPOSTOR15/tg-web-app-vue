@@ -56,15 +56,16 @@ export default {
 <style scoped>
 
 .item-card {
-  width: 47%;
+  width: 50%;
   /* padding: 2% 2% 2% 2%; */
-  margin: 0 auto 10px auto;
+  margin: 0 0;
 }
 .item-img {
   width: 100%;
   display: flex;
   margin: 0 auto 0 auto;
   border: 5px solid transparent;
+  border-radius: 10px;
 }
 .info-text {
   font-size: 15px;

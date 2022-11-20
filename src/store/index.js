@@ -2,6 +2,9 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    selectedProduct: {},
+    selectedImage: {},
+    selectedCollection: {},
     generateProducts: [
       {
         id: '1',
@@ -33,15 +36,14 @@ export default createStore({
       },
       {
         id: '3',
-        name: 'Tote Bag',
+        name: 'Шоппер',
         price: '449',
         imgSrc: 'https://svgshare.com/i/oEj.svg',
         isSelected: false,
       },
-      
       {
         id: '6',
-        name: 'Notebook',
+        name: 'Блокнот',
         price: '349',
         imgSrc: 'https://svgshare.com/i/oFn.svg',
         isSelected: false,
@@ -58,24 +60,35 @@ export default createStore({
         items: [
           {
             id: '1',
-            name: 'Acquisition of cosmic energy',
+            name: 'Обретение космической энергии',
             imgSrc: 'https://svgshare.com/i/o31.svg'
           },
           {
             id: '2',
-            name: 'Saint Solver',
+            name: 'Святой решатель',
             imgSrc: 'https://svgshare.com/i/o32.svg'
           },
           {
             id: '3',
-            name: 'Union of the King of People and the King of Robots',
+            name: 'Союз царя людей и царя роботов',
             imgSrc: 'https://svgshare.com/i/o2F.svg'
           },
           {
             id: '4',
-            name: 'Saint Creators',
+            name: 'Святые создатели',
             imgSrc: 'https://svgshare.com/i/o2B.svg'
+          },
+          {
+            id: '5',
+            name: 'Великий взвешиватель',
+            imgSrc: 'https://svgshare.com/i/oGA.svg'
+          },
+          {
+            id: '6',
+            name: 'Святой счислитель',
+            imgSrc: 'https://svgshare.com/i/oFB.svg'
           }
+
         ]
       },
       {
@@ -84,12 +97,80 @@ export default createStore({
         author: 'ILUXA KISSELMAN',
         imgSrc: 'https://svgshare.com/i/o1S.svg',
         isSelected: false,
-        description: 'none',
+        description: 'Creatures is a collection of 100 portraits of characters living in the virtual space of the crypto universe...',
+        items: [
+          {
+            id: '1',
+            name: '002 ALIEN',
+            imgSrc: 'https://svgshare.com/i/oFC.svg'
+          },
+          {
+            id: '2',
+            name: '003 DOG',
+            imgSrc: 'https://svgshare.com/i/oEp.svg'
+          },
+          {
+            id: '3',
+            name: '004 ROBOT',
+            imgSrc: 'https://svgshare.com/i/oGg.svg'
+          },
+          {
+            id: '4',
+            name: '005 GIRL',
+            imgSrc: 'https://svgshare.com/i/oGB.svg'
+          },
+          {
+            id: '5',
+            name: '006 DUDE',
+            imgSrc: 'https://svgshare.com/i/oFs.svg'
+          },
+          {
+            id: '6',
+            name: '007 DUDE2',
+            imgSrc: 'https://svgshare.com/i/oEd.svg'
+          },
+          {
+            id: '7',
+            name: '010 YAWNING MAN',
+            imgSrc: 'https://svgshare.com/i/oF0.svg'
+          },
+          {
+            id: '8',
+            name: '011 SCIENTIST',
+            imgSrc: 'https://svgshare.com/i/oFX.svg'
+          },
+          {
+            id: '9',
+            name: '014 DAEMON',
+            imgSrc: 'https://svgshare.com/i/oGh.svg'
+          },
+          {
+            id: '10',
+            name: '021 ROBOT3',
+            imgSrc: 'https://svgshare.com/i/oFt.svg'
+          },
+          {
+            id: '11',
+            name: '023 ALIEN3',
+            imgSrc: 'https://svgshare.com/i/oGC.svg'
+          },
+          {
+            id: '12',
+            name: '024 BEARDED2',
+            imgSrc: 'https://svgshare.com/i/oFg.svg'
+          },
+          {
+            id: '13',
+            name: '026 ROBOT4',
+            imgSrc: 'https://svgshare.com/i/oGi.svg'
+          },
+
+        ]
       },
       {
         id: '3',
         name: 'ABSTRACTIONS',
-        author: 'Maxim Baryshnikov',
+        author: 'Максим Барышников',
         imgSrc: 'https://svgshare.com/i/o1k.svg',
         isSelected: false,
         description: 'The collection of 450 abstract photographs of Moscow streets',
@@ -135,6 +216,15 @@ export default createStore({
         imgSrc: 'https://svgshare.com/i/o1n.svg',
         isSelected: false,
       },
+    ],
+    generatedMerchImages: [
+      {
+        id: '1',
+        product_id: '3',
+        collection_id: '2',
+        img_id: '2',
+        imgSrc: 'https://svgshare.com/i/oGD.svg',
+      }
     ],
     products: [
       {
@@ -211,6 +301,18 @@ export default createStore({
     },
     PREMIUMCOLECTIONS: state => {
       return state.premiumColections;
+    },
+    SELECTEDPRODUCT: state => {
+      return state.selectedProduct
+    },
+    SELECTEDCOLLECTION: state => {
+      return state.selectedCollection
+    },
+    SELECTEDIMAGE: state => {
+      return state.selectedImage
+    },
+    GENERATEDMERCHIMAGES: state => {
+      return state.generatedMerchImages
     }
   },
   mutations: {
@@ -221,7 +323,6 @@ export default createStore({
     ADD_PRODUCT: (state, payload) => {
       state.products.push(payload);
     },
-
 
     SET_GENERATEPRODUCTS: (state, payload) => {
       state.generateProducts = payload;
@@ -244,6 +345,17 @@ export default createStore({
     ADD_PREMIUMCOLECTION: (state, payload) => {
       state.premiumColections.push(payload);
     },
+
+
+    SET_SELECTEDPRODUCT: (state, payload) => {
+      state.selectedProduct = payload;
+    },
+    SET_SELECTEDCOLLECTION: (state, payload) => {
+      state.selectedCollection = payload;
+    },
+    SET_SELECTEDIMAGE: (state, payload) => {
+      state.selectedImage = payload;
+    }
   },
   actions: {
     GET_PRODUCTS: async (context, payload) => {
@@ -276,6 +388,16 @@ export default createStore({
       // let {data} = await Axios.post('');
       context.commit('ADD_PREMIUMCOLECTION', payload);
     },
+
+    UPDATE_SELECTEDPRODUCT: async (context, payload) => {
+      context.commit('SET_SELECTEDPRODUCT', payload)
+    },
+    UPDATE_SELECTEDCOLLECTION: async (context, payload) => {
+      context.commit('SET_SELECTEDCOLLECTION', payload)
+    },
+    UPDATE_SELECTEDIMAGE: async (context, payload) => {
+      context.commit('SET_SELECTEDIMAGE', payload)
+    }
   },
   modules: {
   }
