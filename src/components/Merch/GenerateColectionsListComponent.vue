@@ -30,7 +30,10 @@
         v-for="item in currentCollection.items"
         :key="item.id"
         :item="item"
-        @itemSelected="selectItem($event)"
+        :isitemAlreadySelected="isitemAlreadySelected"
+        :isNeedToUnSelectItem="isNeedToUnSelectItem"
+        @selectItem="selectItem($event)"
+        @unselectItem="unselectItem($event)"
       />
     </div>
   </div>
@@ -39,6 +42,10 @@
 <script>
 import Colection from '@/components/Merch/ColectionToGenerate.vue'
 import ColectionItem from '@/components/Merch/colectionPage/ColectionItem.vue'
+
+import {useTelegram} from '@/mixins/useTelegram.js';
+const {tg} = useTelegram();
+
 export default {
   components: {
     Colection,
@@ -46,13 +53,18 @@ export default {
   },
   data() {
     return {
+      //data
       basicColections: this.$store.getters.BASICCOLECTIONS,
       premiumColections: this.$store.getters.PREMIUMCOLECTIONS,
-      collectionListToShow: 'basic',
-      isBasicBtnActive: true,
-      isPremiumBtnActive: false,
+
       isColectionSelected: false,
+
       currentCollection: {},
+      currentItem: {},
+
+      //item props
+      isitemAlreadySelected: false,
+      isNeedToUnSelectItem: false,
     }
   },
   methods: {
@@ -60,7 +72,32 @@ export default {
       this.isColectionSelected = true
       var colectionIndex = this.basicColections.findIndex(colection => colection.id === colectionId)
       this.currentCollection = this.basicColections[colectionIndex]
+    },
+
+    selectItem(itemId) {
+      this.isitemAlreadySelected = true
+      this.isNeedToUnSelectItem = !this.isNeedToUnSelectItem
+      var itemIndex = this.currentCollection.items.findIndex(item => item.id === itemId)
+      this.currentItem = this.currentCollection.items[itemIndex]
+      tg.MainButton.show();
+    },
+    unselectItem(itemId) {
+      this.isItemAlreadySelected = false
+      this.currentItem = {}
+      tg.MainButton.hide();
+    },
+    goToCreatePage() {
+      alert("успешно");
     }
+  },
+  mounted() {
+    tg.MainButton.setParams({
+      text: 'Создать'
+    })
+    tg.onEvent('mainButtonClicked', this.goToCreatePage)
+  },
+  unmounted() {
+    tg.offEvent('mainButtonClicked', this.goToCreatePage)
   }
 }
 </script>

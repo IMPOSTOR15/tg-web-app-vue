@@ -2,7 +2,7 @@
   <div class="item-card" @click="collectionSelect()">
     <div class="item-info">
       <div class="img-wrapper">
-        <img class="item-img" :src=item.imgSrc alt="">
+        <img class="item-img"  :class="isActiveImg ? 'activeImg' : ''" :src=item.imgSrc alt="">
       </div>
       <div class="info-text">
         <p class="item-name">{{ item.name }}</p>
@@ -17,18 +17,39 @@ export default {
     item: {
       type: Object,
       reqired: true
+    },
+    isItemAlreadySelected: {
+      type: Boolean,
+      reqired: true,
+    },
+    isNeedToUnSelectItem: {
+      type: Boolean,
+      reqired: true,
     }
   },
   data() {
     return {
-
+      isActiveImg: false,
     }
   },
   methods: {
-    collectionSelect() {
-      this.$emit('colectionSelected', this.item.id)
+    async collectionSelect() {
+      if(this.isActiveImg) {
+        await this.$emit('unselectItem', this.item.id)
+        this.isActiveImg = false
+      } else {
+        await this.$emit('selectItem', this.item.id)
+        this.isActiveImg = true
+      }
+      
+    }
+  },
+  watch: {
+    isNeedToUnSelectItem() {
+      this.isActiveImg = false
     }
   }
+  
 }
 </script>
 
@@ -36,15 +57,22 @@ export default {
 
 .item-card {
   width: 47%;
-  padding: 2% 2% 2% 2%;
-  margin: 0 auto 0 auto;
+  /* padding: 2% 2% 2% 2%; */
+  margin: 0 auto 10px auto;
 }
 .item-img {
+  width: 100%;
   display: flex;
-  margin: 5px auto 5px auto;
+  margin: 0 auto 0 auto;
+  border: 5px solid transparent;
 }
 .info-text {
   font-size: 15px;
-  padding: 0 2%;
+  padding: 2% 5px;
+}
+.activeImg {
+  border: 5px solid #c431c4;
+  /* margin-top: 0;
+  margin-bottom: 0; */
 }
 </style>

@@ -23,11 +23,13 @@ export default {
   },
   data() {
     return {
-
+      activeImg: 'active-img',
+      isActiveImg: false,
     }
   },
   methods: {
     collectionSelect() {
+      this.isActiveImg = true
       this.$emit('colectionSelected', this.colection.id)
     }
   },
@@ -58,5 +60,8 @@ export default {
 }
 .colection-author {
   font-size: 15px;
+}
+.active-img {
+  border: 2px solid
 }
 </style>

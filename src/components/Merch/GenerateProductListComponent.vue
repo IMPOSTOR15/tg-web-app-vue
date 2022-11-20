@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     addProduct(prodId) {
-        this.isProductAlreadySelected = true
+      this.isProductAlreadySelected = true
       this.isNeedToUnSelect = !this.isNeedToUnSelect
       
     },
