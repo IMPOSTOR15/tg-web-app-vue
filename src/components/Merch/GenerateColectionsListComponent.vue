@@ -36,7 +36,7 @@
         @unselectItem="unselectItem($event)"
       />
     </div>
-    <!-- <button @click="goToCreatePage">Создать</button> -->
+    <button @click="goToCreatePage">Создать</button>
   </div>
 </template>
 

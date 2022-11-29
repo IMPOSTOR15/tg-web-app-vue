@@ -9,7 +9,7 @@
   </div>
   <div class="product-place" v-else>
     <div class="product-wrapper" v-if="isImgExist">
-      <img class="merch-img" :src="generatedMerchImage" alt="">
+      <img class="merch-img" :src="require('@/assets/generatedMockups/' + generatedMerchImageName)" alt="">
     </div>
     <div v-else>
       <p class="top-text no-img-text textP">Такой картинки нет</p>
@@ -43,6 +43,12 @@ export default {
       selectedImage: null,
       isImgExist: false,
       isMerchInCart: false,
+      generatedMerchImageName: null,
+      imgArr: [],
+      dataToSend: {
+        name: '',
+
+      }
     }
   },
   methods: {
@@ -57,7 +63,8 @@ export default {
       tg.MainButton.show();
     },
     goToConfirmOrder() {
-      alert('На этом пока все')
+      tg.sendData(`Вы заказали ${this.selectedProduct.name} с изображением ${this.selectedImage.name} из коллекции ${this.selectedCollection.name} автора ${this.selectedCollection.author}`);
+      tg.offEvent('mainButtonClicked', this.goToConfirmOrder)
     },
     loadingCheck() {
       setTimeout(() => {
@@ -66,8 +73,11 @@ export default {
       }, 2000);
     }
   },
+  async created() {
+    
+  },
   async mounted() {
-    await this.difData()
+    
     // console.log("Выбранный продукт: ");
     // console.log(this.$store.getters.SELECTEDPRODUCT);
     // console.log("Выбранное изображение: ");
@@ -77,20 +87,37 @@ export default {
     // console.log(this.selectedProduct.id);
     // console.log(this.selectedCollection.id);
     // console.log(this.selectedImage.id)
+
+    await this.difData()
+    // console.log('Картинка');
+    // console.log(this.selectedImage.name);
+    // console.log('предмет');
+    // console.log(this.selectedProduct);
+    // console.log('Колекция');
+    // console.log(this.selectedCollection);
+    // console.log(`Вы заказали ${this.selectedProduct.name} с изображением ${this.selectedImage.name} из коллекции ${this.selectedCollection.name} автора ${this.selectedCollection.author}`);
+    this.generatedMerchImages.map((elem) => {
+      this.imgArr.push(require('@/assets/generatedMockups/' + elem.imgName))
+      var test = new Image()
+      test.src = this.imgArr[0]
+
+      if (elem.product_id === this.selectedProduct.id && elem.collection_id === this.selectedCollection.id && elem.img_id === this.selectedImage.id) {
+        console.log(elem.imgSrc);
+        this.generatedMerchImage = elem.imgSrc
+        this.generatedMerchImageName = elem.imgName
+        this.isImgExist = true
+        
+      }
+    })
+    
+
     tg.MainButton.setParams({
       text: 'ОФОРМИТЬ ЗАКАЗ'
     })
     tg.onEvent('mainButtonClicked', this.goToConfirmOrder)
     console.log('start loading');
     this.loadingCheck()
-    this.generatedMerchImages.map((elem) => {
-      if (elem.product_id === this.selectedProduct.id && elem.collection_id === this.selectedCollection.id && elem.img_id === this.selectedImage.id) {
-        console.log(elem.imgSrc);
-        this.generatedMerchImage = elem.imgSrc
-        this.isImgExist = true
-      }
-    })
-    console.log(this.generatedMerchImage);
+
   },
   unmounted() {
     tg.offEvent('mainButtonClicked', this.goToConfirmOrder)

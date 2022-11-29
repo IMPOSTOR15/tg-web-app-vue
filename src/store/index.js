@@ -214,6 +214,7 @@ export default createStore({
         name: 'RECENT PAINTINGS',
         author: 'Malcolm T. Liepke',
         imgSrc: 'https://svgshare.com/i/o1n.svg',
+        
         isSelected: false,
       },
     ],
@@ -224,6 +225,7 @@ export default createStore({
         collection_id: '2',
         img_id: '2',
         imgSrc: 'https://svgshare.com/i/oGD.svg',
+        imgName: 'shoperCreatures003Dog.svg',
       }
     ],
     products: [
