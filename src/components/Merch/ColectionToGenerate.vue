@@ -4,7 +4,7 @@
       <div class="img-wrapper">
         <img width="100" height="100" class="colection-img" :src=colection.imgSrc alt="">
       </div>
-      <div class="info-text">
+      <div class="info-text" :style="{opacity: + opacityPercent}">
         <p class="colection-name">{{ colection.name }}</p>
         <p></p>
         <p class="colection-author hint-color">{{ colection.author }}</p>
@@ -25,6 +25,7 @@ export default {
     return {
       activeImg: 'active-img',
       isActiveImg: false,
+      opacityPercent: '1',
     }
   },
   methods: {
@@ -33,6 +34,11 @@ export default {
       this.$emit('colectionSelected', this.colection.id)
     }
   },
+  mounted() {
+    if (this.colection.name === 'ABSTRACTIONS') {
+      this.opacityPercent = '.6'
+    }
+  }
 }
 </script>
 
@@ -47,9 +53,11 @@ export default {
 .colection-img {
   margin: 0 auto;
   width: 100%;
-  height: 50%;
+  height: 60%;
   max-height: 136px;
   max-width: 173px;
+  min-height: 136px;
+  min-width: 173px;
 }
 .info-text {
   text-align: center;

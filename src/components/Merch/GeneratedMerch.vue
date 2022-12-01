@@ -45,9 +45,14 @@ export default {
       isMerchInCart: false,
       generatedMerchImageName: null,
       imgArr: [],
+      curProdFolder: '',
+      imgWebSrc: '',
       dataToSend: {
         name: '',
-
+        imgLocalSrc: '',
+        imgSrc: '',
+        collectionName: '',
+        collectionAuthor: '',
       }
     }
   },
@@ -63,7 +68,17 @@ export default {
       tg.MainButton.show();
     },
     goToConfirmOrder() {
-      tg.sendData(`Вы заказали ${this.selectedProduct.name} с изображением ${this.selectedImage.name} из коллекции ${this.selectedCollection.name} автора ${this.selectedCollection.author}`);
+      this.dataToSend = {
+        selectedProductName: this.selectedProduct.name,
+        imgName: this.selectedImage.name,
+        imgWebSrc: this.imgWebSrc,
+        imgLocalSrc: this.generatedMerchImageName,
+        collectionName: this.selectedCollection.name,
+        collectionAuthor: this.selectedCollection.author,
+      }
+      
+      // tg.sendData(`Вы заказали ${this.selectedProduct.name} с изображением ${this.selectedImage.name} из коллекции ${this.selectedCollection.name} автора ${this.selectedCollection.author}`);
+      tg.sendData(JSON.stringify(this.dataToSend))
       tg.offEvent('mainButtonClicked', this.goToConfirmOrder)
     },
     loadingCheck() {
@@ -96,20 +111,32 @@ export default {
     // console.log('Колекция');
     // console.log(this.selectedCollection);
     // console.log(`Вы заказали ${this.selectedProduct.name} с изображением ${this.selectedImage.name} из коллекции ${this.selectedCollection.name} автора ${this.selectedCollection.author}`);
-    this.generatedMerchImages.map((elem) => {
-      this.imgArr.push(require('@/assets/generatedMockups/' + elem.imgName))
+    var testImgArr = []
+    
+    this.generatedMerchImages.map((elem, index) => {
+      // if (this.selectedProduct.name === 'шопер') {
+      //   this.curProdFolder = 'shoopers/'
+      // } else if (this.selectedProduct.name === 'шопер') {
+      //   this.curProdFolder = 'shirts/'
+      // }
+      
+      this.imgArr.push(require('@/assets/generatedMockups/' + elem.imgLocalSrc))
+      
       var test = new Image()
-      test.src = this.imgArr[0]
+      test.src = this.imgArr[index]
+      testImgArr.push(test)
 
       if (elem.product_id === this.selectedProduct.id && elem.collection_id === this.selectedCollection.id && elem.img_id === this.selectedImage.id) {
         console.log(elem.imgSrc);
         this.generatedMerchImage = elem.imgSrc
-        this.generatedMerchImageName = elem.imgName
+        this.generatedMerchImageName = elem.imgLocalSrc
         this.isImgExist = true
+        this.imgWebSrc = test.src
+        console.log(this.imgWebSrc);
         
       }
     })
-    
+    console.log(testImgArr);
 
     tg.MainButton.setParams({
       text: 'ОФОРМИТЬ ЗАКАЗ'

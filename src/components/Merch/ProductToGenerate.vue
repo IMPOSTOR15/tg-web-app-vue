@@ -1,6 +1,6 @@
 <template>
   <div class="product-card" @click="productAction()">
-    <div class="product-info">
+    <div class="product-info" :style="{opacity: + opacityPercent}">
       <div class="img-wrapper">
         <img width="100" height="100" class="good-img" :src=product.imgSrc alt="">
       </div>
@@ -10,7 +10,16 @@
         <p class="product-price">{{ product.price }}₽</p>
       </div>
     </div>
-    <div class="add-section">
+    <div class="add-section"
+      v-if="product.name === 'Чехол' || product.name === 'Худи' || product.name === 'Кепка'"
+    >
+      <div class="add-row">
+        <button class="soon-btn">
+          <span class="btn-text">СКОРО</span> 
+        </button>
+      </div>
+    </div>
+    <div class="add-section" v-else>
       <div class="add-row">
         <button v-if="!isProductSelected" class="add-btn">
           <span class="btn-text">ВЫБРАТЬ</span> 
@@ -41,21 +50,29 @@ export default {
   },
   data() {
     return {
-      isProductSelected: false
+      isProductSelected: false,
+      opacityPercent: '1',
     }
   },
   methods: {
     async productAction() {
-      if (this.isProductSelected) {
+      if (!(this.product.name === 'Чехол' || this.product.name === 'Худи' || this.product.name === 'Кепка' )) {
+        if (this.isProductSelected) {
 
-        await this.$emit('removeProduct', this.product.id)
+          await this.$emit('removeProduct', this.product.id)
 
-        this.isProductSelected = false
-      } else {
-        
-        await this.$emit('addProduct', this.product.id)
-        this.isProductSelected = true
+          this.isProductSelected = false
+        } else {
+          
+          await this.$emit('addProduct', this.product.id)
+          this.isProductSelected = true
+        }
       }
+    }
+  },
+  mounted() {
+    if (this.product.name === 'Чехол' || this.product.name === 'Худи' || this.product.name === 'Кепка' ) {
+      this.opacityPercent = 0.5
     }
   },
   watch: {
@@ -85,6 +102,16 @@ export default {
   border: none;
   border-radius: 6px;
 }
+
+.soon-btn {
+  height: 30px;
+  margin-top: 5px;
+  width: 87%;
+  border: none;
+  border-radius: 6px;
+  background-color: #454340;
+}
+
 .remove-btn {
   height: 30px;
   margin-top: 5px;
