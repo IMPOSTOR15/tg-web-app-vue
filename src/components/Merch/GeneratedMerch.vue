@@ -185,6 +185,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   background-color: #fff;
+  background-color: var(--tg-theme-hint-color);
 }
 .product-wrapper {
   margin: 0 auto;
