@@ -2,7 +2,8 @@
   <div class="item-card" @click="collectionSelect()">
     <div class="item-info">
       <div class="img-wrapper">
-        <img class="item-img"  :class="isActiveImg ? 'activeImg' : ''" :src=item.imgSrc alt="">
+        <!-- <img class="item-img"  :class="isActiveImg ? 'activeImg' : ''" :src=item.imgSrc alt=""> -->
+        <img class="item-img"  :class="isActiveImg ? 'activeImg' : ''" :src="require('@/assets/CollectionsImages/' + item.imgLocalSrc)" alt="">
       </div>
       <div class="info-text">
         <p class="item-name">{{ item.name }}</p>

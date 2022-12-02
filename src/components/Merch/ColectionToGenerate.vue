@@ -2,7 +2,8 @@
   <div class="collection-card" @click="collectionSelect()">
     <div class="colection-info">
       <div class="img-wrapper">
-        <img width="100" height="100" class="colection-img" :src=colection.imgSrc alt="">
+        <!-- <img width="100" height="100" class="colection-img" :src=colection.imgSrc alt=""> -->
+        <img width="100" height="100" class="colection-img" :src="require('@/assets' + colection.imgLocalSrc)" alt="">
       </div>
       <div class="info-text" :style="{opacity: + opacityPercent}">
         <p class="colection-name">{{ colection.name }}</p>
@@ -30,8 +31,11 @@ export default {
   },
   methods: {
     collectionSelect() {
-      this.isActiveImg = true
-      this.$emit('colectionSelected', this.colection.id)
+      if (!(this.colection.name === 'ABSTRACTIONS')) {
+        this.isActiveImg = true
+        this.$emit('colectionSelected', this.colection.id)
+      }
+      
     }
   },
   mounted() {

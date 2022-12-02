@@ -161,6 +161,8 @@ export default {
 }
 .merch-img {
   width: 100%;
+  height: 300px;
+  margin: 10px 0;
 }
 .top-text {
   text-align: center;
@@ -188,6 +190,8 @@ export default {
   background-color: var(--tg-theme-hint-color);
 }
 .product-wrapper {
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
 }
 .button-wrapper {

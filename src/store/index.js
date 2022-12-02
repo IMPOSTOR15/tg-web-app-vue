@@ -55,38 +55,45 @@ export default createStore({
         name: 'SAINTS ROBOTS',
         author: 'ILUXA KISSELMAN',
         imgSrc: 'https://svgshare.com/i/o1m.svg',
+        imgLocalSrc: '/basicColections/collection_1.png',
         isSelected: false,
         description: 'Once on a far distant planet, robots were left unattended...',
         items: [
           {
             id: '1',
             name: 'Обретение космической энергии',
-            imgSrc: 'https://svgshare.com/i/o31.svg'
+            imgSrc: 'https://svgshare.com/i/o31.svg',
+            imgLocalSrc: 'SaintsRobots/ОбретениеКосмическойЭнергии.png'
           },
           {
             id: '2',
             name: 'Святой решатель',
-            imgSrc: 'https://svgshare.com/i/o32.svg'
+            imgSrc: 'https://svgshare.com/i/o32.svg',
+            imgLocalSrc: 'SaintsRobots/СвятойРешатель.png'
           },
           {
             id: '3',
             name: 'Союз царя людей и царя роботов',
-            imgSrc: 'https://svgshare.com/i/o2F.svg'
+            imgSrc: 'https://svgshare.com/i/o2F.svg',
+            imgLocalSrc: 'SaintsRobots/СоюзЦаряЛюдейИЦаряРоботов.png'
           },
           {
             id: '4',
             name: 'Святые создатели',
-            imgSrc: 'https://svgshare.com/i/o2B.svg'
+            imgSrc: 'https://svgshare.com/i/o2B.svg',
+            imgLocalSrc: 'SaintsRobots/СвятыеСоздатели.png'
           },
           {
             id: '5',
             name: 'Великий взвешиватель',
-            imgSrc: 'https://svgshare.com/i/oGA.svg'
+            imgSrc: 'https://svgshare.com/i/oGA.svg',
+            imgLocalSrc: 'SaintsRobots/ВеликийВзвешиватель.png'
           },
           {
             id: '6',
             name: 'Святой счислитель',
-            imgSrc: 'https://svgshare.com/i/oFB.svg'
+            imgSrc: 'https://svgshare.com/i/oFB.svg',
+            imgLocalSrc: 'SaintsRobots/СвятойСчислитель.png'
           }
 
         ]
@@ -96,73 +103,87 @@ export default createStore({
         name: 'CREATURES',
         author: 'ILUXA KISSELMAN',
         imgSrc: 'https://svgshare.com/i/o1S.svg',
+        imgLocalSrc: '/basicColections/collection_2.png',
         isSelected: false,
         description: 'Creatures is a collection of 100 portraits of characters living in the virtual space of the crypto universe...',
         items: [
           {
             id: '1',
             name: '002 ALIEN',
-            imgSrc: 'https://svgshare.com/i/oFC.svg'
+            imgSrc: 'https://svgshare.com/i/oFC.svg',
+            imgLocalSrc: 'Creatures/002ALIEN.png'
           },
           {
             id: '2',
             name: '003 DOG',
-            imgSrc: 'https://svgshare.com/i/oEp.svg'
+            imgSrc: 'https://svgshare.com/i/oEp.svg',
+            imgLocalSrc: 'Creatures/003DOG.png'
           },
           {
             id: '3',
             name: '004 ROBOT',
-            imgSrc: 'https://svgshare.com/i/oGg.svg'
+            imgSrc: 'https://svgshare.com/i/oGg.svg',
+            imgLocalSrc: 'Creatures/004ROBOT.png'
           },
           {
             id: '4',
             name: '005 GIRL',
-            imgSrc: 'https://svgshare.com/i/oGB.svg'
+            imgSrc: 'https://svgshare.com/i/oGB.svg',
+            imgLocalSrc: 'Creatures/005GIRL.png'
           },
           {
             id: '5',
             name: '006 DUDE',
-            imgSrc: 'https://svgshare.com/i/oFs.svg'
+            imgSrc: 'https://svgshare.com/i/oFs.svg',
+            imgLocalSrc: 'Creatures/006DUDE.png'
           },
           {
             id: '6',
             name: '007 DUDE2',
-            imgSrc: 'https://svgshare.com/i/oEd.svg'
+            imgSrc: 'https://svgshare.com/i/oEd.svg',
+            imgLocalSrc: 'Creatures/007DUDE2.png'
           },
           {
             id: '7',
             name: '010 YAWNING MAN',
-            imgSrc: 'https://svgshare.com/i/oF0.svg'
+            imgSrc: 'https://svgshare.com/i/oF0.svg',
+            imgLocalSrc: 'Creatures/010YAWNINGMAN.png'
           },
           {
             id: '8',
             name: '011 SCIENTIST',
-            imgSrc: 'https://svgshare.com/i/oFX.svg'
+            imgSrc: 'https://svgshare.com/i/oFX.svg',
+            imgLocalSrc: 'Creatures/011SCIENTIST.png'
           },
           {
             id: '9',
             name: '014 DAEMON',
-            imgSrc: 'https://svgshare.com/i/oGh.svg'
+            imgSrc: 'https://svgshare.com/i/oGh.svg',
+            imgLocalSrc: 'Creatures/014DAEMON.png'
           },
           {
             id: '10',
             name: '021 ROBOT3',
-            imgSrc: 'https://svgshare.com/i/oFt.svg'
+            imgSrc: 'https://svgshare.com/i/oFt.svg',
+            imgLocalSrc: 'Creatures/021ROBOT3.png'
           },
           {
             id: '11',
             name: '023 ALIEN3',
-            imgSrc: 'https://svgshare.com/i/oGC.svg'
+            imgSrc: 'https://svgshare.com/i/oGC.svg',
+            imgLocalSrc: 'Creatures/023ALIEN3.png'
           },
           {
             id: '12',
             name: '024 BEARDED2',
-            imgSrc: 'https://svgshare.com/i/oFg.svg'
+            imgSrc: 'https://svgshare.com/i/oFg.svg',
+            imgLocalSrc: 'Creatures/024BEARDED2.png'
           },
           {
             id: '13',
             name: '026 ROBOT4',
-            imgSrc: 'https://svgshare.com/i/oGi.svg'
+            imgSrc: 'https://svgshare.com/i/oGi.svg',
+            imgLocalSrc: 'Creatures/026ROBOT4.png'
           },
 
         ]
@@ -173,6 +194,7 @@ export default createStore({
         author: 'Максим Барышников',
         // imgSrc: 'https://svgshare.com/i/o1k.svg',
         imgSrc: 'https://svgshare.com/i/oWZ.svg',
+        imgLocalSrc: '/basicColections/collection_3.png',
         isSelected: false,
         description: 'The collection of 450 abstract photographs of Moscow streets',
         items: [
@@ -482,7 +504,7 @@ export default createStore({
         collection_id: '2',
         img_id: '13',
         imgSrc: '',
-        imgLocalSrc: 'shirts/Creatures/024BEARDED2.png',
+        imgLocalSrc: 'shirts/Creatures/026ROBOT4.png',
       },
       //
       //Robots
