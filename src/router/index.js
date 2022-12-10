@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import chooseMerchPage from '@/components/Merch/GenerateProductListComponent.vue'
 import chooseColectionPage from '@/components/Merch/GenerateColectionsListComponent.vue'
 import generatedMerch from '@/components/Merch/GeneratedMerch.vue'
+import AiGeneratedMerch from '@/components/AITestDir/AiGeneratedMerch.vue'
 const routes = [
   {
     path: '/',
@@ -25,9 +26,19 @@ const routes = [
     component: generatedMerch
   },
   {
+    path: '/generatedAiMerch',
+    name: 'generatedAiMerch',
+    component: AiGeneratedMerch
+  },
+  {
     path: '/nfthome',
     name: 'nfthome',
     component: () => import( '../views/NFTHomeView.vue')
+  },{
+    path: '/dalleGenerator',
+    name: 'dalle',
+    // component: () => import( '../components/AITestDir/DalleComponent.vue')
+    component: () => import( '../views/AiGeneratorPageView.vue')
   },
   {
     path: '/tgcolors',

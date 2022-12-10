@@ -4,6 +4,7 @@ export default createStore({
   state: {
     selectedProduct: {},
     selectedImage: {},
+    selectedAiImage: {},
     selectedCollection: {},
     generateProducts: [
       {
@@ -803,6 +804,9 @@ export default createStore({
     SELECTEDIMAGE: state => {
       return state.selectedImage
     },
+    SELECTEDAIIMAGE: state => {
+      return state.selectedAiImage
+    },
     GENERATEDMERCHIMAGES: state => {
       return state.generatedMerchImages
     }
@@ -847,6 +851,9 @@ export default createStore({
     },
     SET_SELECTEDIMAGE: (state, payload) => {
       state.selectedImage = payload;
+    },
+    SET_SELECTEDAIIMAGE: (state, payload) => {
+      state.selectedAiImage = payload;
     }
   },
   actions: {
@@ -889,6 +896,9 @@ export default createStore({
     },
     UPDATE_SELECTEDIMAGE: async (context, payload) => {
       context.commit('SET_SELECTEDIMAGE', payload)
+    },
+    UPDATE_SELECTEDAIIMAGE: async (context, payload) => {
+      context.commit('SET_SELECTEDAIIMAGE', payload)
     }
   },
   modules: {
