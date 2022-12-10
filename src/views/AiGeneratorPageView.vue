@@ -10,7 +10,7 @@
       :isitemAlreadySelected="isitemAlreadySelected"
       :isNeedToUnSelectItem="isNeedToUnSelectItem"
     />
-    <!-- <button @click="goToMerchPreView">Оформить заказ</button> -->
+    <button @click="goToMerchPreView">Оформить заказ</button>
   </div>
 </template>
 
