@@ -13,6 +13,9 @@
     <button class="main-btn">
       <router-link class="link" to="tgcolors">Color samples</router-link>
     </button>
+    <button class="main-btn">
+      <router-link class="link" to="dalleGenerator">ImageGenerator</router-link>
+    </button>
   </div>
 
 </template>

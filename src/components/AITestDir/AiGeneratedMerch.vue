@@ -8,12 +8,12 @@
     <LoadingIndicator/>
   </div>
   <div class="product-place" v-else>
-    <div class="product-wrapper" v-if="isImgExist">
-      <img class="merch-img" :src="require('@/assets/generatedMockups/' + generatedMerchImageName)" alt="">
+    <div class="product-wrapper">
+      <img class="merch-img" :src="selectedAiImage.url" alt="">
     </div>
-    <div v-else>
+    <!-- <div v-else>
       <p class="top-text no-img-text textP">Такой картинки нет</p>
-    </div>
+    </div> -->
     <div class="button-wrapper" @click="addToCart">
       <button class="tocart-button" v-if="!isMerchInCart"><p class="btn-txt">В КОРЗИНУ</p></button>
       <button class="tocart-button" v-else><p class="btn-txt">УСПЕШНО!</p></button>
@@ -41,7 +41,6 @@ export default {
       selectedProduct: null,
       selectedCollection: null,
       selectedImage: null,
-      isImgExist: false,
       isMerchInCart: false,
       generatedMerchImageName: null,
       imgArr: [],
@@ -58,10 +57,8 @@ export default {
   },
   methods: {
     async difData() {
-      this.generatedMerchImages = this.$store.getters.GENERATEDMERCHIMAGES
       this.selectedProduct = this.$store.getters.SELECTEDPRODUCT
-      this.selectedCollection = this.$store.getters.SELECTEDCOLLECTION
-      this.selectedImage = this.$store.getters.SELECTEDIMAGE
+      this.selectedAiImage = this.$store.getters.SELECTEDAIIMAGE
     },
     addToCart() {
       this.isMerchInCart = true
@@ -69,13 +66,9 @@ export default {
     },
     goToConfirmOrder() {
       this.dataToSend = {
-        source: 'collections',
+        source: 'AI',
         selectedProductName: this.selectedProduct.name,
-        imgName: this.selectedImage.name,
-        imgWebSrc: this.imgWebSrc,
-        imgLocalSrc: this.generatedMerchImageName,
-        collectionName: this.selectedCollection.name,
-        collectionAuthor: this.selectedCollection.author,
+        imgWebSrc: this.selectedAiImage.url,
       }
       
       // tg.sendData(`Вы заказали ${this.selectedProduct.name} с изображением ${this.selectedImage.name} из коллекции ${this.selectedCollection.name} автора ${this.selectedCollection.author}`);
@@ -93,51 +86,14 @@ export default {
     
   },
   async mounted() {
-    
-    // console.log("Выбранный продукт: ");
-    // console.log(this.$store.getters.SELECTEDPRODUCT);
-    // console.log("Выбранное изображение: ");
-    // console.log(this.$store.getters.SELECTEDIMAGE);
-    // console.log(this.generatedMerchImages);
-    // console.log("------");
-    // console.log(this.selectedProduct.id);
-    // console.log(this.selectedCollection.id);
-    // console.log(this.selectedImage.id)
-
     await this.difData()
-    // console.log('Картинка');
-    // console.log(this.selectedImage.name);
-    // console.log('предмет');
-    // console.log(this.selectedProduct);
-    // console.log('Колекция');
-    // console.log(this.selectedCollection);
-    // console.log(`Вы заказали ${this.selectedProduct.name} с изображением ${this.selectedImage.name} из коллекции ${this.selectedCollection.name} автора ${this.selectedCollection.author}`);
-    var testImgArr = []
-    
-    this.generatedMerchImages.map((elem, index) => {
-      // if (this.selectedProduct.name === 'шопер') {
-      //   this.curProdFolder = 'shoopers/'
-      // } else if (this.selectedProduct.name === 'шопер') {
-      //   this.curProdFolder = 'shirts/'
-      // }
-      
-      this.imgArr.push(require('@/assets/generatedMockups/' + elem.imgLocalSrc))
-      
-      var test = new Image()
-      test.src = this.imgArr[index]
-      testImgArr.push(test)
 
-      if (elem.product_id === this.selectedProduct.id && elem.collection_id === this.selectedCollection.id && elem.img_id === this.selectedImage.id) {
-        console.log(elem.imgSrc);
-        this.generatedMerchImage = elem.imgSrc
-        this.generatedMerchImageName = elem.imgLocalSrc
-        this.isImgExist = true
-        this.imgWebSrc = test.src
-        console.log(this.imgWebSrc);
-        
+    this.dataToSend = {
+        source: 'AI',
+        selectedProductName: this.selectedProduct.name,
+        imgWebSrc: this.selectedAiImage.url,
       }
-    })
-    console.log(testImgArr);
+    console.log(this.dataToSend);
 
     tg.MainButton.setParams({
       text: 'ОФОРМИТЬ ЗАКАЗ'
@@ -161,7 +117,7 @@ export default {
   
 }
 .merch-img {
-  height: 250px;
+  height: 230px;
   margin: 10px 0;
 }
 .top-text {

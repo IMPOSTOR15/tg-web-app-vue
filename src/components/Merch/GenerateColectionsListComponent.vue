@@ -17,6 +17,11 @@
     </div>
     <p class="top-text text-description textP">Наши коллекции - это работы российских художников, дизайнеров и фотографов</p>
     <p class="top-text text-description textP">Коллекции принтов обновляются ежемесячно</p>
+    <div class="ai-block">
+      <h2 class="ai-header">Не понравилась ни одна коллекция? не беда!</h2>
+      <p class="top-text textP hint-color">Попробуй сгенерировать свое собственное изобржение для мерча по кнопке ниже</p>
+      <button class="generateAi-btn" @click="$router.push('dalleGenerator')">ГЕНЕРИРОВАТЬ</button>
+    </div>
   </div>
   <div class="selectPicture" v-else>
     <div class="back-p" @click="isColectionSelected = !isColectionSelected">
@@ -109,6 +114,29 @@ export default {
 </script>
 
 <style scoped>
+.ai-header {
+  text-align: center;
+  font-size: 18px;
+}
+.ai-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 20px;
+}
+.generateAi-btn {
+  width: 200px;
+  height: 40px;
+  background: rgb(148,58,180);
+  background: linear-gradient(90deg, rgba(148,58,180,1) 11%, rgba(253,100,29,1) 50%, rgba(69,91,252,1) 94%);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px auto;
+}
+
 
 .collections-wrapper {
   display: flex;
