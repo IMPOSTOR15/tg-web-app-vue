@@ -12,9 +12,9 @@
 <script>
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 
-// const apiKey = process.env.VUE_APP_OPENAI_API_KEY;
+const apiKey = process.env.VUE_APP_OPENAI_API_KEY
 // const apiKey = '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';
-const apiKey = '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';
+// const apiKey = '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';
 export default {
   name: "ImageGenerator",
   components: {
