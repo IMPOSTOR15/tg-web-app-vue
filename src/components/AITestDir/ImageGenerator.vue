@@ -1,10 +1,13 @@
 <template>
   <div class="input-wrapper">
-    <p class="top-text textP">Введи текст и нажми на кнопку, чтобы увидеть результат</p>
-    <p class="top-text textP">Как только найдешь картинку по душе, выбери ее и оформи заказа</p>
-    <input type="text" placeholder="Что загадал?" v-model="prompt">
-    <button class="generateAi-btn" @click="generateImage">Создать</button>
-    <p class="top-text textP">Изображения создаются некоторое время, прояви терпение</p>
+    <p class="top-text textP">Ты можешь создать все, что угодно!</p>
+    <p class="mid-text textP">1) Введи любой текст в строку ниже. Чем длиннее и точнее запрос, тем качественнее изображение на выходе. А еще наша нейросеть лучше понимает английский.</p>
+    <p class="mid-text textP">2) Нажми на кнопку «Создать».</p>
+    <p class="mid-text textP">3) Дай нейросети время на создание — об этом тебе подскажет индикатор загрузки.</p>
+    <p class="mid-text textP">4) Если тебе не понравился результат, ты можешь попробовать снова совсем бесплатно!</p>
+    <p class="mid-text textP">5) Когда создашь идеальный результат, добавь предмет в корзину и оформи заказ, как обычно.</p>
+    <input type="text" placeholder="Например, «Лев и яблоков в космосе»..." v-model="prompt">
+    <button class="generateAi-btn" @click="generateImage">СОЗДАТЬ</button>
     <LoadingIndicator class="loading-indicator" v-if="loading"/>
   </div>
 </template>
@@ -12,7 +15,7 @@
 <script>
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 
-const apiKey = process.env.VUE_APP_OPENAI_API_KEY
+const apiKey = process.env.VUE_APP_OPENAI_API_KEY_SECOND
 // const apiKey = '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';
 // const apiKey = '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';
 export default {
@@ -85,29 +88,34 @@ export default {
 }
 .top-text {
   text-align: center;
+  font-size: 18px;
+}
+.mid-text {
+  font-size: 15px;
+  color: var(--tg-theme-hint-color);
 }
 .textP {
   margin-top: 15px;
-  font-size: 15px;
+  
 }
 input {
   height: 30px;
   border: 1px solid #bdbdbd;
   border-radius: 0.25rem;
-  margin: 10px 0;
+  margin: 30px 0 10px 0;
 }
 input::placeholder {
   text-align: center;
 }
 
 .generateAi-btn {
-  width: 200px;
-  height: 40px;
-  background: rgb(148,58,180);
-  background: linear-gradient(90deg, rgba(148,58,180,1) 11%, rgba(253,100,29,1) 50%, rgba(69,91,252,1) 94%);
+  width: 133px;
+  height: 31px;
+  /* background: rgb(148,58,180);
+  background: linear-gradient(90deg, rgba(148,58,180,1) 11%, rgba(253,100,29,1) 50%, rgba(69,91,252,1) 94%); */
   border: none;
-  border-radius: 10px;
-  color: #fff;
+  border-radius: 7px;
+  /* color: #fff; */
   font-size: 20px;
   font-weight: bold;
   margin: 10px auto;

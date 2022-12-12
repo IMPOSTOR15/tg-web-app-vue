@@ -68,10 +68,10 @@ export default {
 }
 .colection-name {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
 }
 .colection-author {
-  font-size: 15px;
+  font-size: 13px;
 }
 .active-img {
   border: 2px solid

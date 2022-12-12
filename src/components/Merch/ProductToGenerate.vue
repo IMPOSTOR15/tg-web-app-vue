@@ -7,7 +7,7 @@
       <div class="info-text">
         <p class="product-name">{{ product.name }}</p>
         <p></p>
-        <p class="product-price">{{ product.price }}₽</p>
+        <p v-if="!(product.name === 'Чехол' || product.name === 'Худи' || product.name === 'Кепка')" class="product-price">{{ product.price }}₽</p>
       </div>
     </div>
     <div class="add-section"
@@ -118,6 +118,7 @@ export default {
   width: 87%;
   border: none;
   border-radius: 6px;
+  background: #d5584c;
 }
 .btn-text {
   font-size: 15px;

@@ -1,27 +1,20 @@
 <template>
   <div class="chooseCollection" v-if="!isColectionSelected">
-    <p class="top-text textP">Шаг 2. Выбери коллекцию принтов</p>
+    <p class="top-text header-text">Шаг 2. Выбери коллекцию принтов</p>
     <p class="top-text textP hint-color">Нажми на обложку коллекции для ее просмотра</p>
     <div class="colections-list">
       <div class="collections-wrapper">
+        <AiCard />
         <Colection
           v-for="colection in basicColections"
           :key="colection.id"
           :colection="colection"
           @colectionSelected="selectCollection($event)"
         />
-        <div class="more-collections">
-          <p class="more-text hint-color">СКОРО ЗДЕСЬ ПОЯВИТСЯ БОЛЬШЕ КОЛЛЕКЦИЙ</p>
-        </div>
       </div>
     </div>
     <p class="top-text text-description textP">Наши коллекции - это работы российских художников, дизайнеров и фотографов</p>
     <p class="top-text text-description textP">Коллекции принтов обновляются ежемесячно</p>
-    <div class="ai-block">
-      <h2 class="ai-header">Не понравилась ни одна коллекция? не беда!</h2>
-      <p class="top-text textP hint-color">Попробуй сгенерировать свое собственное изобржение для мерча по кнопке ниже</p>
-      <button class="generateAi-btn" @click="$router.push('dalleGenerator')">ГЕНЕРИРОВАТЬ</button>
-    </div>
   </div>
   <div class="selectPicture" v-else>
     <div class="back-p" @click="isColectionSelected = !isColectionSelected">
@@ -48,6 +41,7 @@
 <script>
 import Colection from '@/components/Merch/ColectionToGenerate.vue'
 import ColectionItem from '@/components/Merch/colectionPage/ColectionItem.vue'
+import AiCard from '@/components/Merch/colectionPage/AiCard.vue'
 
 import {useTelegram} from '@/mixins/useTelegram.js';
 const {tg} = useTelegram();
@@ -55,7 +49,8 @@ const {tg} = useTelegram();
 export default {
   components: {
     Colection,
-    ColectionItem
+    ColectionItem,
+    AiCard,
   },
   data() {
     return {
@@ -150,6 +145,10 @@ export default {
 .textP {
   margin-top: 15px;
   font-size: 15px;
+}
+.header-text {
+  margin-top: 15px;
+  font-size: 18px;
 }
 
 .text-description {

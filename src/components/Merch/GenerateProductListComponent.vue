@@ -1,5 +1,5 @@
 <template>
-  <p class="top-text textP">Шаг 1. Выбери базу</p>
+  <p class="top-text textP header-text">Шаг 1. Выбери базу</p>
   <div class="products-list">
     <ProductToGenerate
       v-for="product in generateProducts"
@@ -81,6 +81,9 @@ export default {
 }
 .textP {
   margin-top: 15px;
+}
+.header-text {
+  font-size: 18px;
 }
 .btn-wrapper{
   margin-top: 20px;
