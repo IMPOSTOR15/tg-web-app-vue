@@ -5,14 +5,21 @@
     <input type="text" placeholder="Что загадал?" v-model="prompt">
     <button class="generateAi-btn" @click="generateImage">Создать</button>
     <p class="top-text textP">Изображения создаются некоторое время, прояви терпение</p>
+    <LoadingIndicator class="loading-indicator" v-if="loading"/>
   </div>
 </template>
     
 <script>
-// const apiKey = process.env.VUE_APP_OPENAI_API_KEY;
-const apiKey = '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';
+import LoadingIndicator from '@/components/LoadingIndicator.vue'
+
+const apiKey = process.env.VUE_APP_OPENAI_API_KEY
+// const apiKey = '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';
+// const apiKey = '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';
 export default {
   name: "ImageGenerator",
+  components: {
+    LoadingIndicator,
+  },
 
   data() {
     return {
@@ -38,6 +45,7 @@ export default {
       
       {
         // fetch request with header
+
         await fetch("https://api.openai.com/v1/images/generations", {
           method: "POST",
           headers: {
@@ -73,6 +81,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* background: gray; */
 }
 .top-text {
   text-align: center;
@@ -102,5 +111,8 @@ input::placeholder {
   font-size: 20px;
   font-weight: bold;
   margin: 10px auto;
+}
+.loading-indicator {
+  margin: 50px auto;
 }
 </style>
