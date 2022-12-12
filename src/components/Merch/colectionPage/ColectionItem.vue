@@ -42,7 +42,6 @@ export default {
         await this.$emit('selectItem', this.item.id)
         this.isActiveImg = true
       }
-      
     }
   },
   watch: {
