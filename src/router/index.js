@@ -80,6 +80,11 @@ const routes = [
     path: '/order-form',
     name: 'order-form',
     component: () => import( '../components/ProductList/OrderConfirmation.vue')
+  },
+  {
+    path: '/order-confirmation',
+    name: 'order-confirmation',
+    component: () => import( '../components/Form/OrderFormComponent.vue')
   }
 
 ]

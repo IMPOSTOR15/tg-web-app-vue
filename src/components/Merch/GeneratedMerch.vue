@@ -71,15 +71,17 @@ export default {
       this.dataToSend = {
         source: 'collections',
         selectedProductName: this.selectedProduct.name,
+        selectedProductPrice: this.selectedProduct.price,
         imgName: this.selectedImage.name,
         imgWebSrc: this.imgWebSrc,
         imgLocalSrc: this.generatedMerchImageName,
         collectionName: this.selectedCollection.name,
         collectionAuthor: this.selectedCollection.author,
       }
-      
+      this.$store.dispatch('UPDATE_ORDERINFO', this.dataToSend)
+      this.$router.push('order-confirmation')
       // tg.sendData(`Вы заказали ${this.selectedProduct.name} с изображением ${this.selectedImage.name} из коллекции ${this.selectedCollection.name} автора ${this.selectedCollection.author}`);
-      tg.sendData(JSON.stringify(this.dataToSend))
+      // tg.sendData(JSON.stringify(this.dataToSend))
       tg.offEvent('mainButtonClicked', this.goToConfirmOrder)
     },
     loadingCheck() {
@@ -140,7 +142,7 @@ export default {
     console.log(testImgArr);
 
     tg.MainButton.setParams({
-      text: 'ОФОРМИТЬ ЗАКАЗ'
+      text: 'ПЕРЕЙТИ К ОФОРМЛЕНИЮ ЗАКАЗА'
     })
     tg.onEvent('mainButtonClicked', this.goToConfirmOrder)
     console.log('start loading');

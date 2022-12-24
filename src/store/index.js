@@ -6,6 +6,7 @@ export default createStore({
     selectedImage: {},
     selectedAiImage: {},
     selectedCollection: {},
+    orderInfo: {},
     generateProducts: [
       {
         id: '1',
@@ -809,6 +810,9 @@ export default createStore({
     },
     GENERATEDMERCHIMAGES: state => {
       return state.generatedMerchImages
+    },
+    ORDERINFO: state => {
+      return state.orderInfo
     }
   },
   mutations: {
@@ -848,6 +852,9 @@ export default createStore({
     },
     SET_SELECTEDCOLLECTION: (state, payload) => {
       state.selectedCollection = payload;
+    },
+    SET_ORDERINFO: (state, payload) => {
+      state.orderInfo = payload;
     },
     SET_SELECTEDIMAGE: (state, payload) => {
       state.selectedImage = payload;
@@ -893,6 +900,9 @@ export default createStore({
     },
     UPDATE_SELECTEDCOLLECTION: async (context, payload) => {
       context.commit('SET_SELECTEDCOLLECTION', payload)
+    },
+    UPDATE_ORDERINFO: async (context, payload) => {
+      context.commit('SET_ORDERINFO', payload)
     },
     UPDATE_SELECTEDIMAGE: async (context, payload) => {
       context.commit('SET_SELECTEDIMAGE', payload)

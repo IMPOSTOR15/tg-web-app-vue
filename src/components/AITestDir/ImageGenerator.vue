@@ -16,12 +16,9 @@
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 
 const { Configuration, OpenAIApi } = require("openai");
-const apiKey = process.env.VUE_APP_OPENAI_API_KEY_SECOND
-// const apiKey = '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';
-// const apiKey = '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';
 
 const configuration = new Configuration({
-  apiKey: process.env.VUE_APP_OPENAI_API_KEY_SECOND,
+  apiKey: process.env.VUE_APP_OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -53,35 +50,6 @@ export default {
       }
       this.loading = true;
       console.log("generating image for prompt: ", prompt);
-      
-      // {
-        // fetch request with header
-
-      //   await fetch("https://api.openai.com/v1/images/generations", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       "Authorization": `Bearer ${apiKey}`,
-      //     },
-      //     body: JSON.stringify({
-      //       prompt: prompt,
-      //       n: 1,
-      //       size: "1024x1024",
-      //     })
-      //   }).then(res => res.json())
-      //   .then(data => {
-      //     this.loading = false;
-      //     this.prompt = "";
-      //     console.log("Response:", data);
-      //     let url = data.data[0].url;
-      //     this.$emit("imageGenerated", {url, prompt});
-      //   })
-      //   .catch(err => {
-      //     this.loading = false;
-      //     this.error = "Error generating image";
-      //     console.log(err);
-      //   });
-      // }
       
 
       try {
