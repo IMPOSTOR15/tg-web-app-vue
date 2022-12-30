@@ -49,11 +49,12 @@ export default {
       console.log('item selected');
       this.isNeedToUnSelectItem = !this.isNeedToUnSelectItem
       this.curentImg.url = ImgUrl
+      this.$store.dispatch('UPDATE_SELECTEDAIIMAGE', this.curentImg)
       tg.MainButton.show();
     },
     unselectImg(ImgUrl) {
       this.isItemAlreadySelected = false
-      this.curentImgUrl = ''
+      this.curentImg.url = ''
       console.log('item unselected');
       
       tg.MainButton.hide();
@@ -69,6 +70,7 @@ export default {
     tg.onEvent('mainButtonClicked', this.goToMerchPreView)
   },
   unmounted() {
+    console.log(this.curentImg);
     this.$store.dispatch('UPDATE_SELECTEDAIIMAGE', this.curentImg)
     tg.offEvent('mainButtonClicked', this.goToMerchPreView)
     tg.MainButton.hide();

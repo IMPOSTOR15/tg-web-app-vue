@@ -4,16 +4,14 @@
     <p class="top-text header-text">Твой мерч готов!</p>
     <p class="top-text textP">Ты можешь оформить заказ или вернуться в главное меню и создать что-то новенькое</p>
   </div>
-  <div class="loading-indicator" v-if="isLoading">
-    <LoadingIndicator/>
-  </div>
-  <div class="product-place" v-else>
+  
+  <div class="product-place">
     <div class="product-wrapper">
-      <img class="merch-img" :src="selectedAiImage.url" alt="">
+      <div class="loading-indicator-wrapper" v-if="isLoading">
+        <LoadingIndicator class="loading-indicator" />
+      </div>
+      <img class="merch-img" :src="selectedAiImage.url" alt="" @load="isLoading = false">
     </div>
-    <!-- <div v-else>
-      <p class="top-text no-img-text textP">Такой картинки нет</p>
-    </div> -->
     <div class="button-wrapper" @click="addToCart">
       <button class="tocart-button" v-if="!isMerchInCart"><p class="btn-txt">В КОРЗИНУ</p></button>
       <button class="tocart-button" v-else><p class="btn-txt">УСПЕШНО!</p></button>
@@ -35,6 +33,7 @@ export default {
   data() {
     return {
       isLoading: true,
+      selectedAiImage: null,
 
       generatedMerchImage: null,
       generatedMerchImages: null,
@@ -59,6 +58,7 @@ export default {
     async difData() {
       this.selectedProduct = this.$store.getters.SELECTEDPRODUCT
       this.selectedAiImage = this.$store.getters.SELECTEDAIIMAGE
+      console.log(this.selectedAiImage);
     },
     addToCart() {
       this.isMerchInCart = true
@@ -77,18 +77,12 @@ export default {
       // tg.sendData(JSON.stringify(this.dataToSend))
       tg.offEvent('mainButtonClicked', this.goToConfirmOrder)
     },
-    loadingCheck() {
-      setTimeout(() => {
-        this.isLoading = false;
-        console.log('end loading');
-      }, 2000);
-    }
   },
   async created() {
-    
+    await this.difData()
   },
   async mounted() {
-    await this.difData()
+    
 
     this.dataToSend = {
         source: 'AI',
@@ -102,7 +96,6 @@ export default {
     })
     tg.onEvent('mainButtonClicked', this.goToConfirmOrder)
     console.log('start loading');
-    this.loadingCheck()
 
   },
   unmounted() {
@@ -112,11 +105,18 @@ export default {
 </script>
 
 <style scoped>
-.loading-indicator {
+.loading-indicator-wrapper {
+  position: absolute;
   display: flex;
   justify-content: center;
-  margin: 30vh 0;
-  
+  margin: auto auto;
+  width: 60vw;
+  height: 60vw;
+  background-color: var(--tg-theme-hint-color);
+}
+
+.loading-indicator {
+  margin: auto;
 }
 .merch-img {
   height: 230px;
