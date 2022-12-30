@@ -4,12 +4,12 @@
     <p class="top-text header-text">Твой мерч готов!</p>
     <p class="top-text textP">Ты можешь оформить заказ или вернуться в главное меню и создать что-то новенькое</p>
   </div>
-  <div class="loading-indicator" v-if="isLoading">
-    <LoadingIndicator/>
-  </div>
-  <div class="product-place" v-else>
+  <div class="product-place">
     <div class="product-wrapper" v-if="isImgExist">
-      <img class="merch-img" :src="require('@/assets/generatedMockups/' + generatedMerchImageName)" alt="">
+      <div class="loading-indicator-wrapper" v-if="isLoading">
+        <LoadingIndicator class="loading-indicator"/>
+      </div>
+      <img class="merch-img" :src="require('@/assets/generatedMockups/' + generatedMerchImageName)" alt="" @load="isLoading = false">
     </div>
     <div v-else>
       <p class="top-text no-img-text textP">Такой картинки нет</p>
@@ -86,7 +86,7 @@ export default {
     },
     loadingCheck() {
       setTimeout(() => {
-        this.isLoading = false;
+        // this.isLoading = false;
         console.log('end loading');
       }, 2000);
     }
@@ -156,11 +156,18 @@ export default {
 </script>
 
 <style scoped>
-.loading-indicator {
+.loading-indicator-wrapper {
+  position: absolute;
   display: flex;
   justify-content: center;
-  margin: 30vh 0;
-  
+  margin: auto auto;
+  width: 60vw;
+  height: 60vw;
+  background-color: var(--tg-theme-hint-color);
+}
+
+.loading-indicator {
+  margin: auto;
 }
 .merch-img {
   height: 250px;

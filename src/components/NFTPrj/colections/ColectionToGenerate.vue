@@ -2,7 +2,10 @@
   <div class="collection-card" @click="collectionSelect()">
     <div class="colection-info">
       <div class="img-wrapper">
-        <img width="100" height="100" class="colection-img" :src=colection.imgSrc alt="">
+        <div class="loading-wrapper" v-if="isLoading">
+          <LoadingIndicator class="loading-indictaor"/>
+        </div>
+        <img width="100" height="100" class="colection-img" :src=colection.imgSrc alt="" @load="imageLoaded">
       </div>
       <div class="info-text">
         <p class="colection-name">{{ colection.name }}</p>
@@ -14,6 +17,8 @@
 </template>
 
 <script>
+import LoadingIndicator from '@/components/LoadingIndicator.vue';
+
 export default {
   props: {
     colection: {
@@ -21,12 +26,18 @@ export default {
       reqired: true
     }
   },
+  components: {
+    LoadingIndicator,
+  },
   data() {
     return {
-
+      isloading: true
     }
   },
   methods: {
+    imageLoaded() {
+      this.isloading = false
+    },
     collectionSelect() {
       this.$emit('colectionSelected', this.colection.id)
     }
@@ -55,5 +66,16 @@ export default {
 }
 .colection-author {
   font-size: 15px;
+}
+.loading-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  background-color: var(--tg-theme-bg-color);
+  z-index: 2;
+}
+.loading-indictaor {
+  margin: auto;
 }
 </style>

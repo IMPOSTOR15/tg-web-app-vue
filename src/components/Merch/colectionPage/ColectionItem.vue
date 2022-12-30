@@ -2,8 +2,17 @@
   <div class="item-card" @click="collectionSelect()">
     <div class="item-info">
       <div class="img-wrapper">
+        <div class="loading-indicator-wrapper" v-if="isLoading">
+          <LoadingIndicator class="loading-indicator"/>
+        </div>
         <!-- <img class="item-img"  :class="isActiveImg ? 'activeImg' : ''" :src=item.imgSrc alt=""> -->
-        <img class="item-img"  :class="isActiveImg ? 'activeImg' : ''" :src="require('@/assets/CollectionsImages/' + item.imgLocalSrc)" alt="">
+        <img
+          class="item-img" 
+          :class="isActiveImg ? 'activeImg' : '' "
+          :src="require('@/assets/CollectionsImages/' + item.imgLocalSrc)"
+          alt=""
+          @load="isLoading = false"
+        >
       </div>
       <div class="info-text">
         <p class="item-name">{{ item.name }}</p>
@@ -13,7 +22,11 @@
 </template>
 
 <script>
+import LoadingIndicator from '@/components/LoadingIndicator.vue'
 export default {
+  components: {
+    LoadingIndicator,
+  },
   props: {
     item: {
       type: Object,
@@ -30,6 +43,7 @@ export default {
   },
   data() {
     return {
+      isLoading: true,
       isActiveImg: false,
     }
   },
@@ -57,7 +71,6 @@ export default {
 
 .item-card {
   width: 50%;
-  /* padding: 2% 2% 2% 2%; */
   margin: 0 0;
 }
 .item-img {
@@ -66,6 +79,7 @@ export default {
   margin: 0 auto 0 auto;
   border: 5px solid transparent;
   border-radius: 10px;
+  z-index: 0;
 }
 .info-text {
   font-size: 15px;
@@ -73,7 +87,26 @@ export default {
 }
 .activeImg {
   border: 5px solid #c431c4;
-  /* margin-top: 0;
-  margin-bottom: 0; */
+}
+.img-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.loading-indicator-wrapper {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  margin: 0 auto 0 auto;
+  background-color: var(--tg-theme-bg-color);
+  z-index: 2;
+}
+
+.loading-indicator {
+  margin: auto;
+  z-index: 3;
 }
 </style>

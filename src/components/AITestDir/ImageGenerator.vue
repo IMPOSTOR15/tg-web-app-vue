@@ -8,7 +8,9 @@
     <p class="mid-text textP">5) Когда создашь идеальный результат, добавь предмет в корзину и оформи заказ, как обычно.</p>
     <input type="text" placeholder="Например, «Лев и яблоко в космосе»..." v-model="prompt">
     <button class="generateAi-btn" @click="generateImage">СОЗДАТЬ</button>
-    <LoadingIndicator class="loading-indicator" v-if="loading"/>
+    <div class="loading-wrapper" v-if="loading">
+      <LoadingIndicator class="loading-indictaor"/>
+    </div>
   </div>
 </template>
     
@@ -120,7 +122,17 @@ input::placeholder {
   font-weight: bold;
   margin: 10px auto;
 }
-.loading-indicator {
+/* .loading-indicator {
   margin: 50px auto;
+} */
+
+.loading-wrapper {
+  height: 320px;
+  width: 100%;
+  display: flex;
+  background-color: var(--tg-theme-bg-color);
+}
+.loading-indictaor {
+  margin: auto;
 }
 </style>
