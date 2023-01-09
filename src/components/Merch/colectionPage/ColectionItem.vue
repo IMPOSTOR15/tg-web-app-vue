@@ -1,12 +1,13 @@
 <template>
-  <div class="item-card" @click="collectionSelect()">
+  <div class="item-card entrance" @click="collectionSelect()">
     <div class="item-info">
       <div class="img-wrapper">
         <div class="loading-indicator-wrapper" v-if="isLoading">
           <LoadingIndicator class="loading-indicator"/>
         </div>
         <!-- <img class="item-img"  :class="isActiveImg ? 'activeImg' : ''" :src=item.imgSrc alt=""> -->
-        <img
+        <img 
+          v-show="!isLoading"
           class="item-img" 
           :class="isActiveImg ? 'activeImg' : '' "
           :src="require('@/assets/CollectionsImages/' + item.imgLocalSrc)"
@@ -95,10 +96,10 @@ export default {
   height: 100%;
 }
 .loading-indicator-wrapper {
-  position: absolute;
+  /* position: absolute; */
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 190px;
   justify-content: center;
   margin: 0 auto 0 auto;
   background-color: var(--tg-theme-bg-color);

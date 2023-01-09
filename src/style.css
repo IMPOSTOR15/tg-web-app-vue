@@ -30,3 +30,17 @@ a {
 .second-bg-color {
     background-color: var(--tg-theme-secondary-bg-color);
 }
+
+/* Реюз анимации */
+.entrance {
+    animation: fade 0.5s ease 0s 1 normal forwards;
+}
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

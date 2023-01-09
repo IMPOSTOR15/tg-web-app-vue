@@ -13,7 +13,7 @@
   </div>
   <p class="top-text textP">На выбранном изделии будет печататься принт</p>
   <div class="btn-wrapper">
-    <div v-if="isProductAlreadySelected" class="back-btn" @click="goToCollections">
+    <div v-if="isProductAlreadySelected" class="back-btn slide" @click="goToCollections">
       <img class="back-btn-img-next" src="@/assets/Button.png" alt="">
     </div>
   </div>
@@ -40,7 +40,7 @@ export default {
       this.isNeedToUnSelect = !this.isNeedToUnSelect
       var productIndex = this.generateProducts.findIndex(product => product.id === prodId)
       this.currentProduct = this.generateProducts[productIndex]
-      console.log(this.currentProduct);
+      // console.log(this.currentProduct);
     },
     removeProduct(prodId) {
       this.isProductAlreadySelected = false
@@ -90,5 +90,21 @@ export default {
   display: flex;
   justify-content: center;	
   background: none;
+}
+
+.slide {
+  animation: slide 0.5s ease 0s 1 normal forwards;
+}
+
+@keyframes slide {
+	0% {
+		opacity: 0;
+		transform: translateY(150px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 </style>

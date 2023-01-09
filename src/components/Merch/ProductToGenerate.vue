@@ -1,5 +1,5 @@
 <template>
-  <div class="product-card" @click="productAction()">
+  <div class="product-card" :class="{ beat: noActivated }" @click="productAction()">
     <div class="product-info" :style="{opacity: + opacityPercent}">
       <div class="img-wrapper">
         <img width="100" height="100" class="good-img" :src=product.imgSrc alt="">
@@ -21,11 +21,8 @@
     </div>
     <div class="add-section" v-else>
       <div class="add-row">
-        <button v-if="!isProductSelected" class="add-btn">
-          <span class="btn-text">ВЫБРАТЬ</span> 
-        </button>
-        <button v-else class="remove-btn">
-          <span class="btn-text">ОТМЕНИТЬ</span> 
+        <button :class="!isProductSelected ? 'add-btn' : 'remove-btn'">
+          <span class="btn-text">{{ !isProductSelected ? 'ВЫБРАТЬ' : 'ОТМЕНИТЬ' }}</span> 
         </button>
       </div>
     </div>
@@ -52,18 +49,19 @@ export default {
     return {
       isProductSelected: false,
       opacityPercent: '1',
+      noActivated: false,
     }
   },
   methods: {
     async productAction() {
       if (!(this.product.name === 'Чехол' || this.product.name === 'Худи' || this.product.name === 'Кепка' )) {
+        this.noActivated = true;
+        setTimeout(() => {this.noActivated = false}, 500)
         if (this.isProductSelected) {
-
+          
           await this.$emit('removeProduct', this.product.id)
-
           this.isProductSelected = false
         } else {
-          
           await this.$emit('addProduct', this.product.id)
           this.isProductSelected = true
         }
@@ -77,6 +75,9 @@ export default {
   },
   watch: {
     isNeedToUnSelect() {
+      if (!this.isProductSelected) {
+        // this.noActivated = false
+      }
       this.isProductSelected = false
     }
   }
@@ -146,6 +147,25 @@ export default {
   padding: 4px 0 4px 0;
   font-size: 15px;
   cursor: pointer;
+}
+
+
+.beat {
+  animation: beat 0.5s ease 0s 1 normal forwards;
+}
+
+@keyframes beat {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="collection-card" @click="collectionSelect()">
+  <div class="collection-card entrance" @click="collectionSelect()">
     <div class="colection-info">
       <div class="img-wrapper">
         <!-- <img width="100" height="100" class="colection-img" :src=colection.imgSrc alt=""> -->

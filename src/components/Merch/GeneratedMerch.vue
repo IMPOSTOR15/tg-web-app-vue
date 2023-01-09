@@ -5,16 +5,16 @@
     <p class="top-text textP">Ты можешь оформить заказ или вернуться в главное меню и создать что-то новенькое</p>
   </div>
   <div class="product-place">
+    <div class="loading-indicator-wrapper" v-if="isLoading">
+      <LoadingIndicator class="loading-indicator"/>
+    </div>
     <div class="product-wrapper" v-if="isImgExist">
-      <div class="loading-indicator-wrapper" v-if="isLoading">
-        <LoadingIndicator class="loading-indicator"/>
-      </div>
-      <img class="merch-img" :src="require('@/assets/generatedMockups/' + generatedMerchImageName)" alt="" @load="isLoading = false">
+      <img v-show="!isLoading" class="merch-img" :src="require('@/assets/generatedMockups/' + generatedMerchImageName)" alt="" @load="isLoading = false">
     </div>
     <div v-else>
       <p class="top-text no-img-text textP">Такой картинки нет</p>
     </div>
-    <div class="button-wrapper" @click="addToCart">
+    <div v-show="!isLoading" class="button-wrapper" @click="addToCart">
       <button class="tocart-button" v-if="!isMerchInCart"><p class="btn-txt">В КОРЗИНУ</p></button>
       <button class="tocart-button" v-else><p class="btn-txt">УСПЕШНО!</p></button>
     </div>
@@ -161,9 +161,10 @@ export default {
   display: flex;
   justify-content: center;
   margin: auto auto;
-  width: 60vw;
-  height: 60vw;
-  background-color: var(--tg-theme-hint-color);
+  left: 0;
+  right: 0;
+  width: 50vw;
+  height: 50vw;
 }
 
 .loading-indicator {

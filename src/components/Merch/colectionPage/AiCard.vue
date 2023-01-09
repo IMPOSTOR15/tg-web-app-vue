@@ -1,5 +1,5 @@
 <template>
-  <div class="card"  @click="$router.push('dalleGenerator')">
+  <div class="card entrance"  @click="$router.push('dalleGenerator')">
     <div class="card-wrapper">
       <div class="card-info">
         <div class="img-wrapper">
@@ -54,4 +54,5 @@ export default {
 .img-wrapper {
   margin: 0 auto;
 }
+
 </style>

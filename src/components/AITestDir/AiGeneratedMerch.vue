@@ -110,9 +110,10 @@ export default {
   display: flex;
   justify-content: center;
   margin: auto auto;
-  width: 60vw;
-  height: 60vw;
-  background-color: var(--tg-theme-hint-color);
+  left: 0;
+  right: 0;
+  width: 50vw;
+  height: 50vw;
 }
 
 .loading-indicator {

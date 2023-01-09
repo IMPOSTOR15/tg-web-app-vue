@@ -1,7 +1,7 @@
 <template>
   <Form class="form" @submit="sendData">
-    <h3 class="form-header">Укажите данные для доставки</h3>
-    <label for="name">Укажите ФИО</label>
+    <h3 class="form-header">Укажи данные для доставки</h3>
+    <label for="name">ФИО</label>
     <Field
       class='input'
       name="name"
@@ -11,7 +11,7 @@
       :rules="validateName" 
     />
     <ErrorMessage name="name" />
-    <label for="phone">Укажите номер телефона</label>
+    <label for="phone">Номер телефона</label>
     <Field
       class='input'
       name="phone"
@@ -21,7 +21,7 @@
       :rules="validateNumber" 
     />
     <ErrorMessage name="phone" />
-    <label for="email">Укажите адрес электронной почты</label>
+    <label for="email">Адрес электронной почты</label>
     <Field
       class='input'
       name="email"
@@ -31,7 +31,7 @@
       :rules="validateEmail" 
     />
     <ErrorMessage name="email" />
-    <label for="adres">Укажите полный адрес доставки и индекс</label>
+    <label for="adres">Полный адрес доставки и индекс</label>
     <Field
       class='input'
       v-model="adres"
@@ -41,7 +41,7 @@
       :rules="validateAdres" 
     />
     <ErrorMessage name="adres" />
-    <label for="deliveryCompany">Выберите желаемую транспортную компанию</label>
+    <label for="deliveryCompany">Выбери транспортную компанию</label>
     <select name="deliveryCompany" v-model="deliveryCompany" class='select' >
       <option value='SDECK'>СДЕК</option>
       <option value='pochta'>Почта россии</option>
@@ -73,11 +73,6 @@ export default {
   },
   methods: {
     buttonCheck() {
-      // if (this.name && this.phoneNumber && this.adres && this.deliveryCompany) {
-      //   tg.MainButton.show();
-      // } else {
-      //   tg.MainButton.hide();
-      // }
       if (this.validateName(this.name) === true &&
           this.validateAdres(this.adres) === true &&
           this.validateNumber(this.phoneNumber) === true &&
@@ -127,7 +122,7 @@ export default {
       }
       const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
       if (!regex.test(value)) {
-        return 'Проверьте правильность ввода';
+        return 'Проверь правильность ввода';
       }
       return true;
     },
