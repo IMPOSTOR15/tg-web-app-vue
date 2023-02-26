@@ -1,6 +1,6 @@
 <template>
   <div class="product-card" :class="{ beat: noActivated }" @click="productAction()">
-    <div class="product-info" :style="{opacity: + opacityPercent}">
+    <div class="product-info" :style="{ opacity: + opacityPercent }">
       <div class="img-wrapper">
         <img width="100" height="100" class="good-img" :src=product.imgSrc alt="">
       </div>
@@ -55,8 +55,6 @@ export default {
   methods: {
     async productAction() {
       if (!(this.product.name === 'Чехол' || this.product.name === 'Худи' || this.product.name === 'Кепка' )) {
-        this.noActivated = true;
-        setTimeout(() => {this.noActivated = false}, 500)
         if (this.isProductSelected) {
           
           await this.$emit('removeProduct', this.product.id)
@@ -65,6 +63,8 @@ export default {
           await this.$emit('addProduct', this.product.id)
           this.isProductSelected = true
         }
+        this.noActivated = true;
+        setTimeout(() => {this.noActivated = false}, 500)
       }
     }
   },

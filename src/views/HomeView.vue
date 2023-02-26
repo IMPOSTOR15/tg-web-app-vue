@@ -5,9 +5,6 @@
   <router-link to="/form">Форма</router-link>
   <div class="main-btn-area">
     <button class="main-btn">
-      <router-link class="link" to="nfthome">Main Page</router-link>
-    </button>
-    <button class="main-btn">
       <router-link class="link" to="choose-merch">New merch design</router-link>
     </button>
     <button class="main-btn">

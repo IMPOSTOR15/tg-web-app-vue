@@ -31,10 +31,6 @@ const routes = [
     component: AiGeneratedMerch
   },
   {
-    path: '/nfthome',
-    name: 'nfthome',
-    component: () => import( '../views/NFTHomeView.vue')
-  },{
     path: '/dalleGenerator',
     name: 'dalle',
     // component: () => import( '../components/AITestDir/DalleComponent.vue')
@@ -46,40 +42,12 @@ const routes = [
     component: () => import( '../views/ColorsView.vue')
   },
   {
-    path: '/ChoseProducteToGenerate',
-    name: 'generation',
-    component: () => import( '../components/NFTPrj/GenerateProductListComponent.vue')
-  },
-  {
-    path: '/chooseColiction',
-    name: 'chooseColiction',
-    component: () => import( '../components/NFTPrj/GenerateColectionsListComponent.vue')
-  },
-  {
     path: '/form',
     name: 'form',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import( '../components/Form/FormComponent.vue')
-  },
-  {
-    path: '/products',
-    name: 'products',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import( '../components/ProductList/ProductList.vue')
-  },
-  {
-    path: '/cart',
-    name: 'cart',
-    component: () => import( '../components/ProductList/CartComponent.vue')
-  },
-  {
-    path: '/order-form',
-    name: 'order-form',
-    component: () => import( '../components/ProductList/OrderConfirmation.vue')
   },
   {
     path: '/order-confirmation',
